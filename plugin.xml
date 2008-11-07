@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="br.ufma.deinf.laws.ncleclipse.layout.MyGraphicalEditor"
+            contributorClass="br.ufma.deinf.laws.ncleclipse.layout.MyGraphicalEditorActionBarContributor"
+            default="true"
+            icon="noicon"
+            id="tutogef.mygraphicaleditor"
+            name="MyGraphicalEditor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,35 @@
+TODO:
+- Sincronizar com o ncl30-eclipse
+- Movimentação da região sobre outra
+
+#################
+06/Nov/2008
+- Remover a ambiguidade das classes do pacote ncl e xml
+  -Ok
+  
+06/Nov/2008
+- Criação de uma nova região
+	- pergunta o Id para o usuário
+	
+06/Nov/2008
+- Sincronização caminho ncl30-eclipse -> ncl30-eclipse-layout
+	Ainda faltando tratar %.
+	
+04/Nov/2008
+- Adicionando novas regiões
+
+04/Nov/2008
+- OutlineView
+
+04/Nov/2008
+- Undo/Redo Support
+
+04/Nov/2008
+- Transparência adicionado às regiões
+	Classe (AlphaLayerFigure.java)
+
+04/Nov/2008
+- Básico de redimensionamento e drag and drop funcionando 
+
+04/Nov/2008
+- Início do Desenvolvimento
