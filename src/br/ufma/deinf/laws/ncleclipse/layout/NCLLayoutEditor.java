@@ -1,5 +1,7 @@
 package br.ufma.deinf.laws.ncleclipse.layout;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -15,8 +17,9 @@ import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
-import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.widgets.Composite;
@@ -25,6 +28,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
@@ -33,6 +37,7 @@ import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.xml.sax.InputSource;
 
+import br.ufma.deinf.laws.ncleclipse.layout.model.Node;
 import br.ufma.deinf.laws.ncleclipse.layout.model.NodeCreationFactory;
 import br.ufma.deinf.laws.ncleclipse.layout.model.Region;
 import br.ufma.deinf.laws.ncleclipse.layout.model.RegionBase;
@@ -41,16 +46,24 @@ import br.ufma.deinf.laws.ncleclipse.layout.tree.AppTreeEditPartFactory;
 import br.ufma.deinf.laws.ncleclipse.ncl.NCLDocument;
 import br.ufma.deinf.laws.ncleclipse.ncl.NCLParser;
 import br.ufma.deinf.laws.ncleclipse.ncl.NCLRegionBaseContentHandler;
+import br.ufma.deinf.laws.ncleditor.editor.contentassist.NCLSourceDocument;
 
 public class NCLLayoutEditor extends GraphicalEditorWithPalette {
 	private PaletteRoot paletteRoot;
-	
+	private NCLSourceDocument nclSourceDocument;
 	
 	public NCLLayoutEditor(){
 		setEditDomain(new DefaultEditDomain(this));
 	}
 	
+	public NCLSourceDocument getNclSourceDocument() {
+		return nclSourceDocument;
+	}
 	
+	public void setNclSourceDocument(NCLSourceDocument nclSourceDocument) {
+		this.nclSourceDocument = nclSourceDocument;
+	}
+
 	/**
 	 * parse the input file and create the model to Gef based on
 	 * <regionBase> and <region> elements.
@@ -70,13 +83,14 @@ public class NCLLayoutEditor extends GraphicalEditorWithPalette {
 			NCLParser parser = new NCLParser();
 			NCLRegionBaseContentHandler nclContentHandler = new NCLRegionBaseContentHandler();
 			NCLDocument nclDocument = new NCLDocument();
+			String text = nclSourceDocument.get();
 			
 			parser.setContentHandler(nclContentHandler);
-			parser.doParse(new InputSource(currentFile.getContents()));
+			parser.doParse(text);
 			
 			psyEntreprise = nclContentHandler.getRegionBase();
 			
-		} catch (CoreException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -115,6 +129,38 @@ public class NCLLayoutEditor extends GraphicalEditorWithPalette {
 	       //viewer.setKeyHandler(new GraphicalViewerKeyHandler(viewer));
 	}
 
+	/**
+	 * Refresh the source code
+	 */
+	public void refreshNCLSourceDocument() {
+		List<Node> children = ((RegionBase)getGraphicalViewer().getContents().getModel()).getChildrenArray();
+		for(int i = 0; i < children.size(); i++){
+			refreshRegionInSource((Region) children.get(i));
+		}
+	}
+	
+	/**
+	 * refresh each region in source code and call this recursive for each child
+	 * @param rg
+	 */
+	private void refreshRegionInSource(Region rg){
+		Integer it = rg.getHeight();
+		nclSourceDocument.setAttribute(rg.getId(), "height", it.toString());
+		it = rg.getWidth();
+		nclSourceDocument.setAttribute(rg.getId(), "width", it.toString());
+		it = rg.getTop();
+		nclSourceDocument.setAttribute(rg.getId(), "top", it.toString());
+		it = rg.getLeft();
+		nclSourceDocument.setAttribute(rg.getId(), "left", it.toString());
+		//faltando trabalhar com bottom e zIndex
+		//Acho que bottom nao será preciso
+		
+		List<Node> children = rg.getChildrenArray();
+		for(int i = 0; i < children.size(); i++){
+			refreshRegionInSource((Region) children.get(i));
+		}
+	}
+	
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		// TODO Auto-generated method stub
@@ -189,5 +235,13 @@ getActionRegistry().getAction(ActionFactory.DELETE.getId()));
 
 		}
 		return paletteRoot;
+	}
+	
+	/**
+	 * This is a test
+	 */
+	public void selectionChanged(IWorkbenchPart part, ISelection selection)
+	{
+		updateActions(getSelectionActions());
 	}
 }
