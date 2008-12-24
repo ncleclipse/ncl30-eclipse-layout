@@ -5,12 +5,18 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class Node{
 	protected String id;
 	protected Rectangle layout;
+
+	//to work with %
+	protected String width_perc;
+	protected String height_perc;
+	protected String x_perc;
+	protected String y_perc;
+	
 	protected List <Node> children;
 	protected Node parent;
 	protected PropertyChangeSupport listeners;
@@ -22,6 +28,14 @@ public class Node{
 	public Node(){
 		this.id = "Unknown";
 		this.layout = new Rectangle(10,10,100,100);
+		this.children = new ArrayList<Node>();
+		this.parent = null;
+		this.listeners = new PropertyChangeSupport(this);
+	}
+	
+	public Node(Rectangle layout){
+		this.id = "Unknown";
+		this.layout = layout;
 		this.children = new ArrayList<Node>();
 		this.parent = null;
 		this.listeners = new PropertyChangeSupport(this);
@@ -96,7 +110,5 @@ public class Node{
 	public boolean contains(Node child) {
 	     return children.contains(child);
 	}
-
-
 }
 

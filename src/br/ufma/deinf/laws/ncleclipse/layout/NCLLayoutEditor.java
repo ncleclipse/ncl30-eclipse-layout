@@ -73,6 +73,7 @@ public class NCLLayoutEditor extends GraphicalEditorWithPalette {
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 		IWorkbenchPage page = win.getActivePage();
+		if(page == null) return new RegionBase();
 		IEditorPart editor = page.getActiveEditor();
 		IFile currentFile = ((FileEditorInput) getEditorInput()).getFile();
 		

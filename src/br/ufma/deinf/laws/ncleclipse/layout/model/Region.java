@@ -11,7 +11,7 @@ public class Region extends Node {
 		title = "Unknown";
 		bottom = zIndex = null;
 	}
-	public String getTitle() {
+	public String getTitle(){
 		return title;
 	}
 
@@ -38,6 +38,8 @@ public class Region extends Node {
 	public void setTop(String top) {
 		if(top.endsWith("px"))
 			this.layout.y = new Integer(top.substring(0, top.length()-2));
+		else if(top.endsWith("%"))
+			this.y_perc = top.substring(0, top.length()-1);
 		else this.layout.y = new Integer(top);
 	}
 	
@@ -50,7 +52,11 @@ public class Region extends Node {
 	}
 
 	public void setBottom(String bottom) {
-		this.bottom = bottom;
+		if(bottom.endsWith("px"))
+			this.layout.height = new Integer(bottom.substring(0, bottom.length()-2));
+		else if(bottom.endsWith("%"))
+			this.height_perc = bottom.substring(0, bottom.length()-1);
+		else this.layout.height = new Integer(bottom);
 	}
 
 	public int getHeight() {
@@ -60,6 +66,8 @@ public class Region extends Node {
 	public void setHeight(String height) {
 		if(height.endsWith("px"))
 			this.layout.height = new Integer(height.substring(0, height.length()-2));
+		else if(height.endsWith("%"))
+			this.height_perc = height.substring(0, height.length()-1);
 		else this.layout.height = new Integer(height);
 	}
 	public void setHeigth(int height){
@@ -73,6 +81,8 @@ public class Region extends Node {
 	public void setWidth(String width) {
 		if(width.endsWith("px"))
 			this.layout.width = new Integer(width.substring(0, width.length()-2));
+		else if(width.endsWith("%"))
+			this.width_perc = width.substring(0, width.length()-1);
 		else this.layout.width = new Integer(width);
 	}
 	

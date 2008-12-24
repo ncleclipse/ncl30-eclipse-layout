@@ -21,4 +21,7 @@ public class RegionChangeLayoutCommand extends AbstractLayoutCommand {
        public void undo(){
     	   this.model.setLayout(oldLayout);
        }
+       public boolean canUndo(){
+      	 return true;
+       }
 }

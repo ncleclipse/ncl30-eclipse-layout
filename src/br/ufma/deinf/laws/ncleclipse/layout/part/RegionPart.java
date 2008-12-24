@@ -1,17 +1,9 @@
 package br.ufma.deinf.laws.ncleclipse.layout.part;
-import java.awt.geom.RectangularShape;
 import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Shape;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gef.requests.CreateRequest;
 
 import br.ufma.deinf.laws.ncleclipse.layout.editpolicies.AppDeletePolicy;
 import br.ufma.deinf.laws.ncleclipse.layout.editpolicies.AppEditLayoutPolicy;
