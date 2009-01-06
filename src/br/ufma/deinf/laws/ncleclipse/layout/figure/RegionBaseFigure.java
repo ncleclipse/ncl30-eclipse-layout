@@ -23,7 +23,7 @@ public class RegionBaseFigure extends Figure {
          add(labelCapital);
          setConstraint(labelCapital, new Rectangle(5, 30, -1, -1));
          setForegroundColor(ColorConstants.black);
-        setBorder(new LineBorder(5));
+         setBorder(new LineBorder(5));
     }
     public void setLayout(Rectangle rect) {
          setBounds(rect);
