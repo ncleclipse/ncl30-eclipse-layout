@@ -2,8 +2,8 @@ package br.ufma.deinf.laws.ncleclipse.layout.commands;
 
 import org.eclipse.gef.commands.Command;
 
+import br.deinf.ufma.laws.ncleclipse.document.NCLSourceDocument;
 import br.ufma.deinf.laws.ncleclipse.layout.model.Node;
-import br.ufma.deinf.laws.ncleditor.editor.contentassist.NCLSourceDocument;
 
 
 public class DeleteCommand extends Command{

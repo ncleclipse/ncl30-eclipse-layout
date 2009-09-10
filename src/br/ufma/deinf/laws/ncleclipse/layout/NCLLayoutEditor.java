@@ -1,9 +1,30 @@
+/*******************************************************************************
+ * This file is part of the authoring environment in Nested Context Language -
+ * NCL Eclipse.
+ * 
+ * Copyright: 2007-2009 UFMA/LAWS (Laboratory of Advanced Web Systems), All Rights Reserved.
+ * 
+ * This program is free software; you can redistribute it and/or modify it under 
+ * the terms of the GNU General Public License version 2 as published by
+ * the Free Software Foundation.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY 
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+ * PARTICULAR PURPOSE.  See the GNU General Public License version 2 for more 
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License version 2
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+ * For further information contact:
+ * 		ncleclipse@laws.deinf.ufma.br
+ * 		http://www.laws.deinf.ufma.br/ncleclipse
+ * 		http://www.laws.deinf.ufma.br
+ ********************************************************************************/
 package br.ufma.deinf.laws.ncleclipse.layout;
 
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
@@ -19,7 +40,6 @@ import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.widgets.Composite;
@@ -35,8 +55,8 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-import org.xml.sax.InputSource;
 
+import br.deinf.ufma.laws.ncleclipse.document.NCLSourceDocument;
 import br.ufma.deinf.laws.ncleclipse.layout.model.Node;
 import br.ufma.deinf.laws.ncleclipse.layout.model.NodeCreationFactory;
 import br.ufma.deinf.laws.ncleclipse.layout.model.Region;
@@ -46,7 +66,6 @@ import br.ufma.deinf.laws.ncleclipse.layout.tree.AppTreeEditPartFactory;
 import br.ufma.deinf.laws.ncleclipse.ncl.NCLDocument;
 import br.ufma.deinf.laws.ncleclipse.ncl.NCLParser;
 import br.ufma.deinf.laws.ncleclipse.ncl.NCLRegionBaseContentHandler;
-import br.ufma.deinf.laws.ncleditor.editor.contentassist.NCLSourceDocument;
 
 public class NCLLayoutEditor extends GraphicalEditorWithPalette {
 	private PaletteRoot paletteRoot;
