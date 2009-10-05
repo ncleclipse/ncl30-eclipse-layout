@@ -56,7 +56,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
-import br.deinf.ufma.laws.ncleclipse.document.NCLSourceDocument;
+import br.ufma.deinf.laws.ncleclipse.document.NCLSourceDocument;
 import br.ufma.deinf.laws.ncleclipse.layout.model.Node;
 import br.ufma.deinf.laws.ncleclipse.layout.model.NodeCreationFactory;
 import br.ufma.deinf.laws.ncleclipse.layout.model.Region;
