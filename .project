@@ -29,7 +29,7 @@
 		<link>
 			<name>ncl30-common</name>
 			<type>2</type>
-			<location>C:/Users/admin/workspace_ncleclipse/ncl30-common/src</location>
+			<locationURI>$%7BWORKSPACE_LOC%7D/ncl30-common/src</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
